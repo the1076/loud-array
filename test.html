@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Loud Array | Test</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="module" src="index.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="branding">
+            <h1 class="title">Loud Array</h1>
+        </div>
+        <div class="version">
+            <span class="title">Version</span>
+            <span class="value" id="version-value"></span>
+        </div>
+    </header>
+    <main>
+        <section>
+            <h2>Output:</h2>
+            <textarea id="console"></textarea>
+        </section>
+        <section>
+            <h2>Add a listener:</h2>
+            <label>
+                <span class="title">Event Type</span>
+                <span class="content">
+                    <select id="add-event-type">
+                        <option value="before-all">Before All</option>
+                        <option value="before-copy-within">Before Copy Within</option>
+                        <option value="before-fill">Before Fill</option>
+                        <option value="before-pop">Before Pop </option>
+                        <option value="before-push">Before Push</option>
+                        <option value="before-reverse">Before Reverse</option>
+                        <option value="before-shift">Before Shift</option>
+                        <option value="before-sort">Before Sort</option>
+                        <option value="before-splice">Before Splice</option>
+                        <option value="before-unshift">Before Unshift</option>
+                        <option value="after-all">After All</option>
+                        <option value="after-copy-within">After Copy Within</option>
+                        <option value="after-fill">After Fill</option>
+                        <option value="after-pop">After Pop</option>
+                        <option value="after-push">After Push</option>
+                        <option value="after-reverse">After Reverse</option>
+                        <option value="after-shift">After Shift</option>
+                        <option value="after-sort">After Sort</option>
+                        <option value="after-splice">After Splice</option>
+                        <option value="after-unshift">After Unshift</option>
+                    </select>
+                </span>
+            </label>
+            <label>
+                <span class="title">Log Value</span>
+                <span class="content"><input type="text" id="add-log-value" /></span>
+            </label>
+        </section>
+        <section>
+            <h2>Remove a listener:</h2>
+            <select id="added-listeners"></select>
+        </section>
+    </main>
+    <footer>
+        <div class="disclaimer">
+        </div>
+        <div class="copyright">
+            <h4>Loud Array is shared under the MIT License</h4>
+            <p>MIT License</p>
+
+            <p>Copyright (c) 2019 1076</p>
+
+            <p>Permission is hereby granted, free of charge, to any person obtaining a copy
+            of this software and associated documentation files (the "Software"), to deal
+            in the Software without restriction, including without limitation the rights
+            to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+            copies of the Software, and to permit persons to whom the Software is
+            furnished to do so, subject to the following conditions:</p>
+
+            <p>The above copyright notice and this permission notice shall be included in all
+            copies or substantial portions of the Software.</p>
+
+            <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+            IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+            FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+            AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+            LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+            OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+            SOFTWARE.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
