@@ -6,6 +6,9 @@ LoudArray is a library used for observing arrays written in vanilla Javascript u
 The entire library is <5kB expanded and <3kB minified.
 This code has been prioritized for readability and, as such, may benefit greatly from optimization.
 
+Why "Loud"? Because this is an array you can listen to.
+Not only can you listen to it, but you can add as many listeners (and, therefore, handlers) as you'd like. Everything this array does can be heard because this array is LOUD!
+
 ## Getting Started
 
 ### Importing the library

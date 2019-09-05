@@ -40,25 +40,32 @@ export default class LoudArray extends Array
 
     addEventListener(event, handler)
     {
-        const privateData = this._private.get(privateKey);
-        let listenerIndex = _array_findListener(this, event, handler);
-        if(listenerIndex > -1)
-        {
-            return privateData.listeners[listenerIndex];
-        }
-
         let listener = event;
         if(!(event instanceof ArrayListener))
         {
             listener = new ArrayListener(event, handler);
         }
 
+        const privateData = this._private.get(privateKey);
+        let listenerIndex = _array_findListener(this, listener.event, listener.handler);
+        if(listenerIndex > -1)
+        {
+            return privateData.listeners[listenerIndex];
+        }
+
+
         privateData.listeners.push(listener);
         return listener;
     }
     removeEventListener(event, handler)
     {
-        let listenerIndex = _array_findListener(this, event, handler);
+        let listener = event;
+        if(!(event instanceof ArrayListener))
+        {
+            listener = new ArrayListener(event, handler);
+        }
+
+        let listenerIndex = _array_findListener(this, listener.event, listener.handler);
         if(listenerIndex == -1)
         {
             return;
@@ -110,7 +117,7 @@ function _array_findListener(target, event, handler)
         let listener = privateData.listeners[i];
         
         let listenerEvent = listener.event.toLowerCase();
-        if(listenerEvent == event && (listenerEvent.afterChange == handler || listenerEvent.beforeChange == handler))
+        if(listenerEvent == event && listener.handler == handler)
         {
             index = i;
             break;

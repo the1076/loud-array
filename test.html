@@ -22,8 +22,66 @@
     </header>
     <main>
         <section>
-            <h2>Output:</h2>
-            <textarea id="console"></textarea>
+            <h2>Array Contents:</h2>
+            <ul id="array-content"></ul>
+        </section>
+        <section>
+            <h2>Array Mutation Operations <small><em>Sourced from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Methods_2">MDN</a></em></small></h2>
+            <ul>
+                <li>
+                    <h3>Copy Within:</h3>
+                    <div>
+                            <input id="copy-within-index" type="number" min="0" placeholder="index to copy" />
+                        <input id="copy-within-start" type="number" min="0" placeholder="start" />
+                        <input id="copy-within-end" type="number" placeholder="end" />
+                    </div>
+                    <button class="action" id="array-operation-copy-within">CopyWithin()</button>
+                </li>
+                <li>
+                    <h3>Fill:</h3>
+                    <div>
+                        <input id="fill-value" type="text" placeholder="value" />
+                        <input id="fill-start" type="number" min="0" placeholder="start" />
+                        <input id="fill-end" type="number" placeholder="end" />
+                    </div>
+                    <button class="action" id="array-operation-fill">Fill()</button>
+                </li>
+                <li>
+                    <h3>Pop:</h3>
+                    <button class="action" id="array-operation-pop">Pop()</button>
+                </li>
+                <li>
+                    <h3>Push:</h3>
+                    <div>
+                        <input id="push-value" type="text" placeholder="value" />
+                    </div>
+                    <button class="action" id="array-operation-push">Push()</button>
+                </li>
+                <li>
+                    <h3>Reverse:</h3>
+                    <button class="action" id="array-operation-reverse">Reverse()</button>
+                </li>
+                <li>
+                    <h3>Shift:</h3>
+                    <button class="action" id="array-operation-shift">Shift()</button>
+                </li>
+                <li>
+                    <h3>Sort:</h3>
+                    <button class="action" id="array-operation-sort">Sort()</button>
+                </li>
+                <li>
+                    <h3>Splice:</h3>
+                    <div>
+                        <input id="splice-start" type="number" min="0" placeholder="start" />
+                        <input id="splice-count" type="number" placeholder="count" />
+                    </div>
+                    <button class="action" id="array-operation-splice">Splice()</button>
+                </li>
+                <li>
+                    <h3>Unshift:</h3>
+                    <button class="action" id="array-operation-unshift">Unshift()</button>
+                </li>
+            </ul>
         </section>
         <section>
             <h2>Add a listener:</h2>
@@ -58,10 +116,16 @@
                 <span class="title">Log Value</span>
                 <span class="content"><input type="text" id="add-log-value" /></span>
             </label>
+            <button class="action" id="add-listener">Add</button>
         </section>
         <section>
             <h2>Remove a listener:</h2>
-            <select id="added-listeners"></select>
+            <select id="added-listeners"><option value="-1">&lt; Select a listener &gt;</option></select>
+            <button class="action" id="remove-listener">Remove</button>
+        </section>
+        <section>
+            <h2>Output:</h2>
+            <textarea id="console" cols="80" rows="10"></textarea>
         </section>
     </main>
     <footer>
