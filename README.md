@@ -15,9 +15,45 @@ A live demo can be viewed on [Codepen](https://codepen.io/the1076/pen/vYBpZvm) a
 ## Getting Started
 
 ### Importing the library
+LoudArray is a standard ES6 module so it can be imported in the common ways:
+```
+import LoudArray, { ArrayListener, ArrayEvent } from "./loud-array.js";
+```
+or (for the minified version)
+```
+import LoudArray, { ArrayListener, ArrayEvent } from "./loud-array.min.js";
+```
 
 ### Usage
 #### Initialization
+To start working with an observable array, create a new instance of LoudArray:
+```
+let myLoudArray = new LoudArray();
+```
+You can use an instance of a LoudArray just like you would any other array object. If you don't add any listeners, LoudArray should function exactly like any other array.
+
+If you would like to include listeners during instantiation (rather than adding them later), simply include an array of key-value pairs that have `event` and `handler` properties:
+```
+let myLoudArray = new LoudArray([{event: 'after-all', handler: (array, args) => { console.log(array); }]);
+```
+If you have imported the `ArrayListener` class, you can use instances of that object to define your listeners, as well:
+```
+let myLoudArray = new LoudArray([new ArrayListener('after-all', (array, args) => { console.log(array); })]);
+```
+
+The first parameter of the `LoudArray` object is for the listeners, but the functionality to instantiate an array with values has been retained via any additional parameters:
+```
+let myListenerArray =
+[
+    new ArrayListener('after-all', (array, args) => { console.log(array); })
+];
+let sourceArray = ["these", "are", "some", "initial", "values"];
+let myLoudArray = new LoudArray(myListenerArray, "start value 1", "start value 2");
+//or
+let myLoudArray = new LoudArray(myListenerArray, ...sourceArray);
+//or
+let myLoudArray = new LoudArray(null, "start value 1", "start value 2", ...sourceArray);
+```
 
 #### Adding Listeners
 
