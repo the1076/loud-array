@@ -1,0 +1,20 @@
+{
+    "name": "loud-array",
+    "description": "An observable array with before and after event dispatching. Written in vanilla ES6.",
+    "version": "1.0.0",
+    "main": "loud-array.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/the1076/loud-array.git"
+    },
+    "keywords": ["observable", "array", "vanilla", "es6"],
+    "author": "1076",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/the1076/loud-array/issues"
+    },
+    "homepage": "https://github.com/the1076/loud-array"
+}

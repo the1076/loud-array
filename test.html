@@ -3,134 +3,280 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Loud Array | Test</title>
+    <title>Loud Array | Demo</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <script type="module" src="index.js"></script>
 </head>
 
 <body>
+    <style>
+        body
+        {
+            --white: #ddd;
+
+            --gray-dark: #363636;
+            --gray-mid: #4d4d4d;
+            --gray-light: #a9a9a9;
+
+            --black-light: #333;
+
+            --blue: rgb(44, 108, 182);
+
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+            color: #24292e;
+            line-height: 1.5;
+            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+            font-size: 16px;
+            line-height: 1.5;
+            word-wrap: break-word;
+            color: var(--black-light);
+        }
+        h1, h2, h3
+        {
+            border-bottom: solid 1px var(--gray-light);
+        }
+        a
+        {
+            color: var(--blue);
+        }
+        input, select
+        {
+            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+            font-size: 16px;
+            border: solid 1px var(--gray-light);
+            padding: .2em .5em;
+            background-color: var(--gray-mid);
+            color: var(--gray-light);
+            border-radius: 3px;
+        }
+        input:focus, input:active, select:focus, select:active
+        {
+            outline: none;
+            border-color: var(--blue);
+        }
+        button
+        {
+            background: none;
+            border: solid 1px var(--white);
+            color: var(--white);
+            cursor:pointer;
+            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+            font-size: 16px;
+        }
+        button:hover
+        {
+            background-color: var(--gray-mid);
+        }
+        ul
+        {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        small
+        {
+            font-size: 12px;
+            white-space: nowrap;
+        }
+        textarea
+        {
+            resize: vertical;
+        }
+        main
+        {
+            max-width:1140px;
+            margin: 2em auto;
+            display:flex;
+            border: solid 1px var(--gray-dark);
+            box-shadow: 0 0 20px 2px rgba(0,0,0, .1);
+        }
+        main > div
+        {
+            display: flex;
+            flex-direction: column;
+            padding: 1em;
+        }
+        main .manipulation
+        ,main .listeners
+        {
+            background: var(--gray-dark);
+            color: var(--gray-light);
+        }
+        main .output
+        {
+            flex: 1;
+        }
+        section
+        {
+            display:flex;
+            flex-direction: column;
+        }
+        section > label
+        {
+            display:flex;
+            flex: 1;
+            margin-bottom: 1em;
+        }
+        section > label .title
+        {
+            margin-right: 1em;
+            text-align: right;
+            min-width: 80px;
+        }
+        section > label .content
+        {
+            display: inline-flex;
+            flex: 1;
+        }
+        section > label .content input
+        ,section > label .content select
+        {
+            flex: 1;
+        }
+        #added-listeners
+        {
+            margin-bottom: 1em;
+        }
+        section > ul > li
+        ,section > ul > li > div
+        {
+            display: flex;
+            flex-direction: column;
+        }
+        section > ul > li input
+        {
+            margin-bottom: .5em;
+        }
+        section > ul > li .action
+        {
+            margin-bottom: .5em;
+        }
+        footer
+        {
+            max-width: 1024px;
+            margin: 1em auto;
+        }
+    </style>
     <header>
         <div class="branding">
-            <h1 class="title">Loud Array</h1>
+            <h1 class="title">Loud Array | Demo</h1>
         </div>
         <div class="version">
             <span class="title">Version</span>
-            <span class="value" id="version-value"></span>
+            <span class="value" id="version-value">1.0.0</span>
         </div>
     </header>
     <main>
-        <section>
-            <h2>Array Contents:</h2>
-            <ul id="array-content"></ul>
-        </section>
-        <section>
-            <h2>Array Mutation Operations <small><em>Sourced from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Methods_2">MDN</a></em></small></h2>
-            <ul>
-                <li>
-                    <h3>Copy Within:</h3>
-                    <div>
-                            <input id="copy-within-index" type="number" min="0" placeholder="index to copy" />
-                        <input id="copy-within-start" type="number" min="0" placeholder="start" />
-                        <input id="copy-within-end" type="number" placeholder="end" />
-                    </div>
-                    <button class="action" id="array-operation-copy-within">CopyWithin()</button>
-                </li>
-                <li>
-                    <h3>Fill:</h3>
-                    <div>
-                        <input id="fill-value" type="text" placeholder="value" />
-                        <input id="fill-start" type="number" min="0" placeholder="start" />
-                        <input id="fill-end" type="number" placeholder="end" />
-                    </div>
-                    <button class="action" id="array-operation-fill">Fill()</button>
-                </li>
-                <li>
-                    <h3>Pop:</h3>
-                    <button class="action" id="array-operation-pop">Pop()</button>
-                </li>
-                <li>
-                    <h3>Push:</h3>
-                    <div>
-                        <input id="push-value" type="text" placeholder="value" />
-                    </div>
-                    <button class="action" id="array-operation-push">Push()</button>
-                </li>
-                <li>
-                    <h3>Reverse:</h3>
-                    <button class="action" id="array-operation-reverse">Reverse()</button>
-                </li>
-                <li>
-                    <h3>Shift:</h3>
-                    <button class="action" id="array-operation-shift">Shift()</button>
-                </li>
-                <li>
-                    <h3>Sort:</h3>
-                    <button class="action" id="array-operation-sort">Sort()</button>
-                </li>
-                <li>
-                    <h3>Splice:</h3>
-                    <div>
-                        <input id="splice-start" type="number" min="0" placeholder="start" />
-                        <input id="splice-count" type="number" placeholder="count" />
-                    </div>
-                    <button class="action" id="array-operation-splice">Splice()</button>
-                </li>
-                <li>
-                    <h3>Unshift:</h3>
-                    <button class="action" id="array-operation-unshift">Unshift()</button>
-                </li>
-            </ul>
-        </section>
-        <section>
-            <h2>Add a listener:</h2>
-            <label>
-                <span class="title">Event Type</span>
-                <span class="content">
-                    <select id="add-event-type">
-                        <option value="before-all">Before All</option>
-                        <option value="before-copy-within">Before Copy Within</option>
-                        <option value="before-fill">Before Fill</option>
-                        <option value="before-pop">Before Pop </option>
-                        <option value="before-push">Before Push</option>
-                        <option value="before-reverse">Before Reverse</option>
-                        <option value="before-shift">Before Shift</option>
-                        <option value="before-sort">Before Sort</option>
-                        <option value="before-splice">Before Splice</option>
-                        <option value="before-unshift">Before Unshift</option>
-                        <option value="after-all">After All</option>
-                        <option value="after-copy-within">After Copy Within</option>
-                        <option value="after-fill">After Fill</option>
-                        <option value="after-pop">After Pop</option>
-                        <option value="after-push">After Push</option>
-                        <option value="after-reverse">After Reverse</option>
-                        <option value="after-shift">After Shift</option>
-                        <option value="after-sort">After Sort</option>
-                        <option value="after-splice">After Splice</option>
-                        <option value="after-unshift">After Unshift</option>
-                    </select>
-                </span>
-            </label>
-            <label>
-                <span class="title">Log Value</span>
-                <span class="content"><input type="text" id="add-log-value" /></span>
-            </label>
-            <button class="action" id="add-listener">Add</button>
-        </section>
-        <section>
-            <h2>Remove a listener:</h2>
-            <select id="added-listeners"><option value="-1">&lt; Select a listener &gt;</option></select>
-            <button class="action" id="remove-listener">Remove</button>
-        </section>
-        <section>
-            <h2>Output:</h2>
-            <textarea id="console" cols="80" rows="10"></textarea>
-        </section>
+        <div class="manipulation">
+            <section>
+                <h2>Array Manipulation</h2>
+                <ul>
+                    <li>
+                        <h3>Valueless Methods:</h3>
+                        <button class="action" id="array-operation-pop" data-operation="pop">Pop()</button>
+                        <button class="action" id="array-operation-reverse" data-operation="reverse">Reverse()</button>
+                        <button class="action" id="array-operation-sort" data-operation="sort">Sort()</button>
+                        <button class="action" id="array-operation-shift" data-operation="shift">Shift()</button>
+                    </li>
+                    <li>
+                        <h3>Push:</h3>
+                        <div>
+                            <input id="push-value" type="text" placeholder="value" />
+                        </div>
+                        <button class="action" id="array-operation-push" data-operation="push">Push()</button>
+                    </li>
+                    <li>
+                        <h3>Splice:</h3>
+                        <div>
+                            <input id="splice-start" type="number" min="0" placeholder="start" />
+                            <input id="splice-count" type="number" placeholder="count" />
+                        </div>
+                        <button class="action" id="array-operation-splice" data-operation="splice">Splice()</button>
+                    </li>
+                    <li>
+                        <h3>Unshift:</h3>
+                        <div>
+                            <input id="unshift-value" type="text" placeholder="value" />
+                        </div>
+                        <button class="action" id="array-operation-unshift" data-operation="unshift">Unshift()</button>
+                    </li>
+                    <li>
+                        <h3>Copy Within:</h3>
+                        <div>
+                                <input id="copy-within-index" type="number" min="0" placeholder="index to copy" />
+                            <input id="copy-within-start" type="number" min="0" placeholder="start" />
+                            <input id="copy-within-end" type="number" placeholder="end" />
+                        </div>
+                        <button class="action" id="array-operation-copy-within" data-operation="copyWithin">CopyWithin()</button>
+                    </li>
+                    <li>
+                        <h3>Fill:</h3>
+                        <div>
+                            <input id="fill-value" type="text" placeholder="value" />
+                            <input id="fill-start" type="number" min="0" placeholder="start" />
+                            <input id="fill-end" type="number" placeholder="end" />
+                        </div>
+                        <button class="action" id="array-operation-fill" data-operation="fill">Fill()</button>
+                    </li>
+                </ul>
+                <small><em>Mutation methods sourced from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Methods_2">MDN</a></em></small>
+            </section>
+        </div>
+        <div class="output">
+            <section>
+                <h2>Array Contents:</h2>
+                <ul id="array-content"></ul>
+            </section>
+            <section>
+                <h2>Console Log:</h2>
+                <textarea id="console" cols="72" rows="10"></textarea>
+            </section>
+        </div>
+        <div class="listeners">
+            <section>
+                <h2>Add a listener:</h2>
+                <label>
+                    <span class="title">Event Type</span>
+                    <span class="content">
+                        <select id="add-event-type">
+                            <option value="before-all">Before All</option>
+                            <option value="before-copy-within">Before Copy Within</option>
+                            <option value="before-fill">Before Fill</option>
+                            <option value="before-pop">Before Pop </option>
+                            <option value="before-push">Before Push</option>
+                            <option value="before-reverse">Before Reverse</option>
+                            <option value="before-shift">Before Shift</option>
+                            <option value="before-sort">Before Sort</option>
+                            <option value="before-splice">Before Splice</option>
+                            <option value="before-unshift">Before Unshift</option>
+                            <option value="after-all">After All</option>
+                            <option value="after-copy-within">After Copy Within</option>
+                            <option value="after-fill">After Fill</option>
+                            <option value="after-pop">After Pop</option>
+                            <option value="after-push">After Push</option>
+                            <option value="after-reverse">After Reverse</option>
+                            <option value="after-shift">After Shift</option>
+                            <option value="after-sort">After Sort</option>
+                            <option value="after-splice">After Splice</option>
+                            <option value="after-unshift">After Unshift</option>
+                        </select>
+                    </span>
+                </label>
+                <label>
+                    <span class="title">Log Value</span>
+                    <span class="content"><input type="text" id="add-log-value" /></span>
+                </label>
+                <button class="action" id="add-listener">Add</button>
+            </section>
+            <section>
+                <h2>Remove a listener:</h2>
+                <select id="added-listeners"><option value="-1">&lt; Select a listener &gt;</option></select>
+                <button class="action" id="remove-listener">Remove</button>
+            </section>
+        </div>
     </main>
     <footer>
-        <div class="disclaimer">
-        </div>
         <div class="copyright">
             <h4>Loud Array is shared under the MIT License</h4>
             <p>MIT License</p>
@@ -156,6 +302,234 @@
             SOFTWARE.</p>
         </div>
     </footer>
+    <script type="module">
+//Imports
+import LoudArray, { ArrayListener } from "./loud-array.min.js";
+
+let addedListeners = [];
+
+let $arrayContent;
+
+let $arrayOperation_copyWithin;
+let $copyWithin_targetIndex;
+let $copyWithin_start;
+let $copyWithin_end;
+let $arrayOperation_fill;
+let $fill_value;
+let $fill_start;
+let $fill_end;
+let $arrayOperation_pop;
+let $arrayOperation_push;
+let $push_value;
+let $arrayOperation_reverse;
+let $arrayOperation_shift;
+let $arrayOperation_sort;
+let $arrayOperation_splice;
+let $splice_start;
+let $splice_count;
+let $arrayOperation_unshift;
+let $unshift_value;
+
+let $add_eventType;
+let $add_logValue;
+let $add_listener;
+
+let $addedListeners;
+let $remove_listener;
+
+let $console;
+
+//Startup
+document.addEventListener('DOMContentLoaded', Document_OnContentLoaded);
+function Document_OnContentLoaded()
+{
+    document.removeEventListener('DOMContentLoaded', Document_OnContentLoaded);
+
+    let basicListener = new ArrayListener('after-all', (array, args) =>
+    {
+        updateArrayDisplay();
+        log('after all', ...array);
+    });
+
+    window.testArray = new LoudArray([basicListener], ...['hello', 'world']);
+
+    getStaticElements();
+    addEventListeners();
+
+    updateArrayDisplay();
+
+    // testArray.addEventListener('before-push', (array, ...args) =>
+    // {
+    //     log('before push', array, ...args);
+    // })
+}
+function getStaticElements()
+{
+    $arrayContent = document.getElementById('array-content');
+
+    $arrayOperation_copyWithin = document.getElementById('array-operation-copy-within');
+    $copyWithin_targetIndex = document.getElementById('copy-within-index');
+    $copyWithin_start = document.getElementById('copy-within-start');
+    $copyWithin_end = document.getElementById('copy-within-end');
+    $arrayOperation_fill = document.getElementById('array-operation-fill');
+    $fill_value = document.getElementById('fill-value');
+    $fill_start = document.getElementById('fill-start');
+    $fill_end = document.getElementById('fill-end');
+    $arrayOperation_pop = document.getElementById('array-operation-pop');
+    $arrayOperation_push = document.getElementById('array-operation-push');
+    $push_value = document.getElementById('push-value');
+    $arrayOperation_reverse = document.getElementById('array-operation-reverse');
+    $arrayOperation_shift = document.getElementById('array-operation-shift');
+    $arrayOperation_sort = document.getElementById('array-operation-sort');
+    $arrayOperation_splice = document.getElementById('array-operation-splice');
+    $splice_start = document.getElementById('splice-start');
+    $splice_count = document.getElementById('splice-count');
+    $arrayOperation_unshift = document.getElementById('array-operation-unshift');
+    $unshift_value = document.getElementById('unshift-value');
+
+    $add_eventType = document.getElementById('add-event-type');
+    $add_logValue = document.getElementById('add-log-value');
+    $add_listener = document.getElementById('add-listener');
+
+    $addedListeners = document.getElementById('added-listeners');
+    $remove_listener = document.getElementById('remove-listener');
+
+    $console = document.getElementById('console');
+}
+function addEventListeners()
+{
+    $arrayOperation_copyWithin.addEventListener('click', arrayOperation_copyWithin_onClick);
+    $arrayOperation_fill.addEventListener('click', arrayOperation_fill_onClick);
+    $arrayOperation_pop.addEventListener('click', arrayOperation_onClick);
+    $arrayOperation_push.addEventListener('click', arrayOperation_push_onClick);
+    $arrayOperation_reverse.addEventListener('click', arrayOperation_onClick);
+    $arrayOperation_shift.addEventListener('click', arrayOperation_onClick);
+    $arrayOperation_sort.addEventListener('click', arrayOperation_onClick);
+    $arrayOperation_splice.addEventListener('click', arrayOperation_splice_onClick);
+    $arrayOperation_unshift.addEventListener('click', arrayOperation_unshift_onClick);
+
+    $add_listener.addEventListener('click', addListener);
+    $remove_listener.addEventListener('click', removeListener);
+}
+
+function updateArrayDisplay()
+{
+    let elementArray = testArray.map((value) =>
+    {
+        return `<li>${value}</li>`;
+    });
+    $arrayContent.innerHTML = elementArray.join('');
+}
+function updateAddedListenersDisplay()
+{
+    let elementArray = addedListeners.map((value, index) =>
+    {
+        return `<option value="${index}">"${value.event}": Log "${value.logValue}"</option>`;
+    });
+    $addedListeners.innerHTML = '<option value="-1">&lt; Select a listener &gt;</option>' + elementArray.join('');
+}
+
+function addListener(event)
+{
+    let logValue = $add_logValue.value.trim();
+    if(logValue == '')
+    {
+        return;
+    }
+
+    let eventType = $add_eventType.value;
+    let listener = new ArrayListener(eventType, (array, ...args) => { log(eventType, logValue); });
+    listener.logValue = logValue;
+
+    addedListeners.push(listener);
+    updateAddedListenersDisplay();
+
+    testArray.addEventListener(listener);
+    
+    $add_logValue.value = '';
+}
+function removeListener(event)
+{
+    if($addedListeners.value == "-1")
+    {
+        return;
+    }
+    let index = parseInt($addedListeners.value)
+    testArray.removeEventListener(addedListeners[index]);
+
+    addedListeners.splice(index, 1);
+    updateAddedListenersDisplay();
+}
+
+function log(...values)
+{
+    console.log(...values);
+    let event = values.shift();
+    $console.innerHTML += "event: " + event + "; values: " +  JSON.stringify(values) + '\n';
+}
+
+//array operations
+function arrayOperation_copyWithin_onClick(event)
+{
+    if(!numberIsValid($copyWithin_targetIndex) || !numberIsValid($copyWithin_start) || !numberIsValid($copyWithin_end))
+    {
+        return;
+    }
+
+    testArray.copyWithin(parseInt($copyWithin_targetIndex.value), parseInt($copyWithin_start.value), parseInt($copyWithin_end.value));
+}
+function arrayOperation_fill_onClick(event)
+{
+    if(!textIsValid($fill_value) || !numberIsValid($fill_start) || !numberIsValid($fill_end))
+    {
+        return;
+    }
+
+    testArray.fill($fill_value.value, parseInt($fill_start.value), parseInt($fill_end.value));
+}
+function arrayOperation_push_onClick(event)
+{
+    if(!textIsValid($push_value))
+    {
+        return;
+    }
+
+    testArray.push($push_value.value);
+}
+function arrayOperation_splice_onClick(event)
+{
+    if(!numberIsValid($splice_start) || !numberIsValid($splice_count))
+    {
+        return;
+    }
+
+    testArray.splice(parseInt($splice_start.value), parseInt($splice_count.value));
+}
+function arrayOperation_unshift_onClick(event)
+{
+    if(!textIsValid($unshift_value))
+    {
+        return;
+    }
+
+    testArray.unshift($unshift_value.value);
+}
+function arrayOperation_onClick(event)
+{
+    let operation = event.currentTarget.dataset.operation;
+    testArray[operation]();
+}
+
+function numberIsValid($input)
+{
+    if(!textIsValid($input)) { return false; }
+    return !isNaN($input.value - 0) && $input.value !== null && $input.value !== false
+}
+function textIsValid($input)
+{
+    return $input.value.trim() != '';
+}
+</script>
 </body>
 
 </html>
