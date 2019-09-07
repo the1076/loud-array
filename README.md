@@ -229,3 +229,4 @@ This LoudArray code:
   ```
   myObservableArray.addEventListener('copy-within', (array, args) => { console.log('test'); } );
   ```
+- Removed both `ArrayListener` and `ArrayEvent` helper classes.
