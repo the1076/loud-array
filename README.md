@@ -91,7 +91,7 @@ Unlike the `HTMLElement` objects, however, you can pass in a single parameter th
   <tr><td rowspan="3"><b>Params</b></td><td><b>Name</b></td><td><b>Type</b></td><td><b>Description</b></td></tr>
   <tr><td><code>eventType</code></td><td><code>string</code></td><td>The <code>eventType</code> of the <code>ArrayListener</code> that is to be removed from the <code>LoudArray</code> instance.<br /><em>(The helper class <code>ArrayEvent</code> contains all valid eventType values.)</em></td></tr>
   <tr><td><code>handler</code></td><td><code>function</code></td><td>The exact function that was used as a handler on the <code>ArrayListener</code> instance to be removed.</td></tr>
-  <tr><td><b>Returns</b></td><td colspan="3"><code>null</code></td></tr>
+  <tr><td><b>Returns</b></td><td colspan="3"><code>undefined</code></td></tr>
   </table>
 
 #### Handler Arguments
@@ -215,12 +215,12 @@ Tested and working in modern versions of the following browsers:
 LoudArray has not been published on NPM. Mainly because I've never published anything on NPM and don't know how to format this code to work with Node. If someone wants to walk me through it, I'm all ears. Until then, there are no specific plans to publish LoudArray on NPM.
 
 # loud-array.micro
-LoudArray was developed to serve a wide variety of purposes but I hate to ship a library with features that most people won't use. I tried to keep LoudArray fairly svelte but there's plenty of fat to be trimmed. 
+LoudArray was developed to serve a wide variety of purposes but I hate to ship a library with features that most people won't use. I tried to keep LoudArray fairly svelte but there's plenty of fat to be trimmed. To that end, I've pared down the LoudArray library to make an even smaller library that can serve use cases that don't require as much versatility. The micro version of the library clocks in at ~3kB expanded and just under 2kB minified.
 
-To that end, I've pared down the LoudArray library to make an even smaller library that can serve use cases that don't require as much versatility. The major changes are:
+The major changes are:
 
-- Removed the "before" event ability, thereby negating the need to handle events as "after". Instead, there is a single callback to be passed in, just like with the `addEventListener` function that exists on `HTMLElement` objects. This callback will always occur **after** a change to the array has been made.
-- The `eventType` parameter for the `addEventListener` consists only of the method name (in dash-delimited lowercase), without a "before" or "after" prefix. In example:
+- Removed the "before" event ability, thereby negating the need to handle events as "after". Instead, there is a single callback to be passed in, just like with the `addEventListener()` function that exists on `HTMLElement` objects. This callback will always occur **after** a change to the array has been made.
+- The `eventType` parameter for the `addEventListener()` consists only of the method name (in dash-delimited lowercase), without a "before" or "after" prefix. In example:
 This LoudArray code:
   ```
   myObservableArray.addEventListener('before-copy-within', (array, args) => { console.log('test'); } );
