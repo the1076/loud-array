@@ -36,6 +36,22 @@ export default class LoudArray extends Array
                 return returnValue;
             }
         }
+
+        //handle functions that return new arrays because otherwise they will return LoudArray instances but the _privacy WeakMap won't work right.
+        privateData['concat'] = this['concat'].bind(this);
+        this['concat'] = (...args) =>
+        {
+            let returnValue = privateData['concat'](...args);
+            returnValue = new Array(...returnValue);
+            return returnValue;
+        }
+        privateData['slice'] = this['slice'].bind(this);
+        this['slice'] = (...args) =>
+        {
+            let returnValue = privateData['slice'](...args);
+            returnValue = new Array(...returnValue);
+            return returnValue;
+        }
     }
 
     addEventListener(event, handler)
@@ -132,7 +148,7 @@ function _dispatchEvents(target, listeners, stage, args)
         let listener = listeners[i];
         if(listener.event.toLowerCase().indexOf(stage) > -1)
         {
-            listener.handler(target, ...args);
+            listener.handler(target, args);
         }
     }
 }
